@@ -1,4 +1,5 @@
-<footer class="rodape">
+<footer class="rodape" [class.rodape-compacto]="compacto()">
+  @if (!compacto()) {
   <div class="rodape-container">
 
     <div class="rodape-marca">
@@ -16,18 +17,18 @@
         <ul>
           <li><a routerLink="/">Início</a></li>
           <li><a routerLink="/receitas">Todas as receitas</a></li>
-          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Sobremesa' }">Sobremesas</a></li>
-          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Massa' }">Massas</a></li>
-          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Salada' }">Saladas</a></li>
         </ul>
       </div>
 
       <div class="rodape-coluna">
-        <h3 class="rodape-titulo-coluna">Mais categorias</h3>
+        <h3 class="rodape-titulo-coluna">Categorias</h3>
         <ul>
           <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Bolo' }">Bolos</a></li>
-          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Sopa' }">Sopas</a></li>
+          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Massa' }">Massas</a></li>
+          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Salada' }">Saladas</a></li>
+          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Sobremesa' }">Sobremesas</a></li>
           <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Grelhado' }">Grelhados</a></li>
+          <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Sopa' }">Sopas</a></li>
           <li><a routerLink="/receitas" [queryParams]="{ categoria: 'Lanche' }">Lanches</a></li>
         </ul>
       </div>
@@ -48,4 +49,5 @@
     <p>© {{ ano }} Sabor & Arte. Todos os direitos reservados.</p>
     <p class="rodape-criadores">Criado por <span class="rodape-criador-nome">Asafe Silva</span> e <span class="rodape-criador-nome">Maria Vieira</span></p>
   </div>
+  }
 </footer>

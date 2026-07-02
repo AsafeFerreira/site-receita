@@ -5,6 +5,12 @@
   margin-top: 80px;
 }
 
+/* Modo compacto (login/cadastro): só o desenho da onda, sem textos, trazido mais para cima */
+.rodape-compacto {
+  margin-top: 0;
+  height: 44px;
+}
+
 .rodape::before {
   content: '';
   position: absolute;

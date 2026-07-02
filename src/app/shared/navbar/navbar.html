@@ -1,22 +1,38 @@
 <header class="cabecalho">
-  <a routerLink="/" class="logo" aria-label="Ir para a página inicial">
-    <span class="logo-icone">🍽️</span>
-    Sabor <span>& Arte</span>
-  </a>
+  <div class="cabecalho-topo">
+    <a routerLink="/" class="logo" aria-label="Ir para a página inicial" (click)="fecharMenu()">
+      <span class="logo-icone">🍽️</span>
+      Sabor <span>& Arte</span>
+    </a>
 
-  <nav class="navbar" aria-label="Navegação principal">
+    <button
+      type="button"
+      class="menu-toggle"
+      [class.aberto]="menuAberto()"
+      (click)="alternarMenu()"
+      [attr.aria-expanded]="menuAberto()"
+      aria-controls="menu-principal"
+      aria-label="Abrir menu de navegação"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <nav class="navbar" id="menu-principal" aria-label="Navegação principal" [class.aberto]="menuAberto()">
     <ul class="nav-lista">
-      <li><a routerLink="/" routerLinkActive="ativo" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Início</a></li>
-      <li><a routerLink="/receitas" routerLinkActive="ativo" class="nav-link">Receitas</a></li>
+      <li><a routerLink="/" routerLinkActive="ativo" [routerLinkActiveOptions]="{ exact: true }" class="nav-link" (click)="fecharMenu()">Início</a></li>
+      <li><a routerLink="/receitas" routerLinkActive="ativo" class="nav-link" (click)="fecharMenu()">Receitas</a></li>
     </ul>
 
     <div class="nav-acoes">
       @if (authService.isLoggenIn()) {
-        <a routerLink="/admin" class="btn-publicar">Painel Admin</a>
-        <button type="button" (click)="authService.logout()" class="btn-sair">Sair</button>
+        <a routerLink="/admin" class="btn-publicar" (click)="fecharMenu()">Painel Admin</a>
+        <button type="button" (click)="authService.logout(); fecharMenu()" class="btn-sair">Sair</button>
       } @else {
-        <a routerLink="/login" class="btn-link-login">Entrar</a>
-        <a routerLink="/cadastro" class="btn-cadastrar">Cadastrar</a>
+        <a routerLink="/login" class="btn-link-login" (click)="fecharMenu()">Entrar</a>
+        <a routerLink="/cadastro" class="btn-cadastrar" (click)="fecharMenu()">Cadastrar</a>
       }
     </div>
   </nav>

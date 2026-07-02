@@ -12,6 +12,33 @@
   padding: 40px 24px 80px;
 }
 
+/* ── Faixa de identidade (liga visualmente ao painel admin) ── */
+.rform-identidade {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.rform-brand-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #c8350a, #f97316);
+  font-size: 15px;
+}
+
+.rform-brand-texto {
+  font-family: var(--fonte-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a6b57;
+}
+
 /* ── Cabeçalho ── */
 .rform-back {
   display: inline-flex;

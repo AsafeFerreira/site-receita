@@ -43,13 +43,10 @@ export class ReceitaForm implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id)
 
     if (this.id) {
     this.receitaService.getById(this.id).subscribe({
       next: (res: any) => {
-        console.log(res);
-
         const mapaDesc = JSON.parse(localStorage.getItem('receitas_descricoes') ?? '{}');
         this.receitaForm.patchValue({
           titulo: res.titulo,

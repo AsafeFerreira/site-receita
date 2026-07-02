@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
 })
@@ -20,10 +20,6 @@ export class Cadastro {
     password: new FormControl(''),
     name: new FormControl(''),
   });
-
-  fechar() {
-    this.router.navigate(['/']);
-  }
 
   onSubmit() {
     const { email, password, name } = this.cadastroForm.getRawValue();

@@ -47,15 +47,17 @@
 
   <section class="admin-main">
     <header class="admin-topbar">
-      <label class="search-box" aria-label="Buscar no painel">
-        <span>⌕</span>
-        <input
-          type="search"
-          placeholder="Buscar..."
-          [value]="searchTerm()"
-          (input)="searchTerm.set($any($event.target).value)"
-        />
-      </label>
+      @if (tab() === 'recipes') {
+        <label class="search-box" aria-label="Buscar no painel">
+          <span>⌕</span>
+          <input
+            type="search"
+            placeholder="Buscar..."
+            [value]="searchTerm()"
+            (input)="searchTerm.set($any($event.target).value)"
+          />
+        </label>
+      }
 
       <div class="topbar-actions">
         <button type="button" class="bell-btn" aria-label="Notificações">
@@ -84,7 +86,7 @@
           </div>
 
           @if (carregando()) {
-            <div class="flex justify-center items-center gap-2 text-slate-600 w-full p-50">
+            <div class="flex justify-center items-center gap-2 text-slate-600 w-full p-5">
               <svg class="animate-spin h-5 w-5 text-slate-500"
                    xmlns="http://www.w3.org/2000/svg"
                    fill="none"
@@ -98,8 +100,10 @@
               <span class="text-sm">Carregando...</span>
             </div>
           } @else if (filteredRecipes().length === 0) {
-            <div class="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-700 m-4">
-              <p class="text-sm">Não existem receitas cadastradas. Por favor, crie uma nova receita.</p>
+            <div class="empty-state">
+              <span class="empty-icon">🍳</span>
+              <strong>Nenhuma receita ainda</strong>
+              <p>Crie sua primeira receita para vê-la aqui.</p>
             </div>
           } @else {
             <div class="recipes-grid-admin">
@@ -121,11 +125,6 @@
                       <span>◷ {{ recipe.prepTime }}min</span>
                       <b [class]="difficultyClass(recipe.difficulty)">{{ recipe.difficulty }}</b>
                     </div>
-                    <div class="recipe-stats-row">
-                      <span>◉ {{ recipe.views }}</span>
-                      <span>♡ {{ recipe.likes }}</span>
-                      <span>☆ {{ recipe.rating }}</span>
-                    </div>
                   </div>
                 </article>
               }
@@ -145,13 +144,7 @@
               <p>{{ user.email }}</p>
               <span class="chef-badge">🏆 Chef Estrela</span>
 
-              <div class="profile-numbers">
-                <div><strong>{{ localRecipes().length }}</strong><small>Receitas</small></div>
-                <div><strong>84</strong><small>Curtidas</small></div>
-                <div><strong>4.8</strong><small>Avaliação</small></div>
-              </div>
-
-              <button type="button" class="outline-btn">Editar Foto</button>
+              <p class="profile-recipe-count">{{ localRecipes().length }} receita(s) publicada(s)</p>
             </article>
 
             <article class="white-card profile-form">
@@ -176,7 +169,6 @@
                 <span>Bio</span>
                 <textarea rows="3">Apaixonado pela culinária brasileira e por receitas caseiras bem explicadas.</textarea>
               </label>
-              <button type="button" class="primary-btn">Salvar Alterações</button>
             </article>
           </div>
         </section>
@@ -210,7 +202,6 @@
                 <strong>Excluir minha conta</strong>
                 <p>Esta ação é irreversível e apagará todos os seus dados.</p>
               </span>
-              <button type="button">Excluir conta</button>
             </div>
           </article>
         </section>
@@ -246,7 +237,6 @@
           <p>{{ recipe.description }}</p>
           <div class="modal-info-row">
             <span>◷ {{ recipe.prepTime }}min</span>
-            <span>☆ {{ recipe.rating }}</span>
             <span>{{ recipe.difficulty }}</span>
           </div>
           <h4>Ingredientes principais</h4>

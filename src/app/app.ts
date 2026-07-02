@@ -15,4 +15,9 @@ export class App {
   protected isAdminRoute(): boolean {
     return this.router.url.startsWith('/admin');
   }
+
+  protected isAuthRoute(): boolean {
+    const url = this.router.url.split('?')[0];
+    return url === '/login' || url === '/cadastro';
+  }
 }

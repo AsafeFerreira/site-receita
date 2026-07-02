@@ -21,10 +21,6 @@ export class Login {
     password: new FormControl(''),
   });
 
-  fechar() {
-    this.router.navigate(['/']);
-  }
-
   onSubmit() {
     this.estaCarregando.set(true);
     const { email, password } = this.loginForm.getRawValue();

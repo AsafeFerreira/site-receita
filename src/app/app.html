@@ -3,5 +3,5 @@
 }
 <router-outlet />
 @if (!isAdminRoute()) {
-  <app-footer></app-footer>
+  <app-footer [compacto]="isAuthRoute()"></app-footer>
 }

@@ -1,25 +1,21 @@
-<main class="login-container">
-  <section class="image-section">
-    <div class="menu-icon-wrapper">
-      <div class="hamburger-menu"></div>
-    </div>
-  </section>
+<main class="auth-page">
+  <div class="hero-decor hero-decor-1"></div>
+  <div class="hero-decor hero-decor-3"></div>
 
-  <section class="form-section">
-    <button class="close-btn" type="button" aria-label="Fechar" (click)="fechar()">&#x2715;</button>
+  <div class="auth-shell animar-subir">
+    <div class="auth-imagem" aria-hidden="true"></div>
 
-    <div class="chef-animated-icon"></div>
-
-    <div class="auth-box">
+    <div class="auth-card">
+      <div class="auth-icone">🍽️</div>
+      <span class="eyebrow">Sabor &amp; Arte</span>
       <h1 class="auth-title">Criar sua conta</h1>
       <p class="auth-subtitle">Junte-se à nossa comunidade de cozinheiros</p>
 
-      <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
-
+      <form class="auth-form" [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
         <div class="field-wrapper">
           <label class="field-label" for="name">Nome completo</label>
           <div class="input-group">
-            <span class="input-icon">&#128100;</span>
+            <span class="input-icon">👤</span>
             <input
               formControlName="name"
               type="text"
@@ -34,7 +30,7 @@
         <div class="field-wrapper">
           <label class="field-label" for="email">E-mail</label>
           <div class="input-group">
-            <span class="input-icon">&#9993;</span>
+            <span class="input-icon">✉</span>
             <input
               formControlName="email"
               type="email"
@@ -49,7 +45,7 @@
         <div class="field-wrapper">
           <label class="field-label" for="password">Senha</label>
           <div class="input-group">
-            <span class="input-icon">&#128274;</span>
+            <span class="input-icon">🔒</span>
             <input
               formControlName="password"
               type="password"
@@ -58,11 +54,10 @@
               placeholder="••••••••"
               required
             />
-            <button type="button" class="toggle-password" ></button>
           </div>
         </div>
 
-        <button type="submit" class="btn-submit">
+        <button type="submit" class="btn-primario auth-submit" [disabled]="estaCarregando()">
           @if (estaCarregando()) {
             Cadastrando...
           } @else {
@@ -71,9 +66,9 @@
         </button>
       </form>
 
-      <p class="switch-auth">
-        Já tem uma conta? <a href="/login">Entrar</a>
+      <p class="auth-switch">
+        Já tem uma conta? <a routerLink="/login">Entrar</a>
       </p>
     </div>
-  </section>
+  </div>
 </main>

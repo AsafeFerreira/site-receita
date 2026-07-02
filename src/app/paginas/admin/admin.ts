@@ -19,9 +19,6 @@ interface AdminRecipe {
   image: string;
   description: string;
   ingredients: string[];
-  views: number;
-  likes: number;
-  rating: string;
 }
 
 interface ToggleSetting {
@@ -61,14 +58,6 @@ export class AdminPanel implements OnInit {
     { id: 'settings' as AdminTab, icon: '⚙', label: 'Configurações' },
   ];
 
-  protected readonly activity = [
-    { icon: '♡', color: '#ef4444', text: 'Ana Clara curtiu sua receita', time: '2min atrás' },
-    { icon: '◉', color: '#3b82f6', text: '12 pessoas viram seu Bolo de Chocolate', time: '15min atrás' },
-    { icon: '☆', color: '#f59e0b', text: 'Você recebeu uma avaliação 5 estrelas', time: '1h atrás' },
-    { icon: '♨', color: '#c8350a', text: 'Sua receita foi destaque hoje!', time: '3h atrás' },
-    { icon: '♡', color: '#ef4444', text: 'Bruno Lima curtiu sua receita', time: '5h atrás' },
-  ];
-
   protected readonly settingsSections: { section: string; items: ToggleSetting[] }[] = [
     {
       section: 'Notificações',
@@ -87,13 +76,6 @@ export class AdminPanel implements OnInit {
       ],
     },
   ];
-
-  protected readonly stats = computed(() => [
-    { label: 'Receitas Publicadas', value: this.localRecipes().length, icon: '📖', color: '#c8350a', bg: '#fff7ed', trend: '+2 este mês' },
-    { label: 'Visualizações', value: '1.2k', icon: '◉', color: '#3b82f6', bg: '#eff6ff', trend: '+18% esta semana' },
-    { label: 'Curtidas Recebidas', value: 84, icon: '♡', color: '#ef4444', bg: '#fef2f2', trend: '+12 hoje' },
-    { label: 'Avaliação Média', value: '4.8', icon: '☆', color: '#f59e0b', bg: '#fffbeb', trend: 'Excelente!' },
-  ]);
 
   protected readonly filteredRecipes = computed(() => {
     const term = this.searchTerm().trim().toLowerCase();
@@ -118,9 +100,6 @@ export class AdminPanel implements OnInit {
           ingredients: Array.isArray(r.ingredientes_principais)
             ? r.ingredientes_principais
             : r.ingredientes_principais.split(',').map(i => i.trim()),
-          views: 0,
-          likes: 0,
-          rating: '0',
         }));
         this.localRecipes.set(mapped);
         this.carregando.set(false);
